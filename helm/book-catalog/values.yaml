@@ -1,0 +1,22 @@
+# values for book-catalog helm chart
+
+replicaCount: 2
+
+image:
+  repository: ghcr.io/dbzioui22-ux/book-catalog-api
+  pullPolicy: IfNotPresent
+  tag: "latest"
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 8000
+
+ingress:
+  hosts:
+    - host: book-catalog.local
+
+env:
+  DJANGO_SECRET_KEY: "change-me-in-production"
+  DJANGO_DEBUG: "False"
+  DJANGO_ALLOWED_HOSTS: "book-catalog.local,localhost"
